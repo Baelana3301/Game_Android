@@ -45,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
             Mechanics.playerWalk();
         }
         if(boardCell.getText() == "E") {
-
+            Mechanics.playerAttack();
         }
     }
 

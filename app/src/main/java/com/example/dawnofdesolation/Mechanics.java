@@ -53,8 +53,9 @@ public class Mechanics {
     }
 
     public static void playerWalk(Entity player, int c_row, int c_col) {
-        if (Math.abs(player.row - c_row) <= 1 && Math.abs(player.col - c_col) <= 1) {
-
+        if (player.actions > 0 && Math.abs(player.row - c_row) <= 1 && Math.abs(player.col - c_col) <= 1) {
+            // передвижение
+            player.actions--;
         }
     }
 
@@ -72,6 +73,28 @@ public class Mechanics {
                 enemy.health -= 10;
                 score += 200;
                 player.actions--;
+            }
+        }
+    }
+
+    public static void enemyWalk(Entity enemy, int c_row, int c_col) {
+        if (enemy.actions > 0 && Math.abs(enemy.row - c_row) <= 1 && Math.abs(enemy.col - c_col) <= 1) {
+            // передвижение
+            enemy.actions--;
+        }
+    }
+
+    public static void enemyAttack(Entity player, Entity enemy) {
+        if (player.actions > 0) {
+            if (player.row == enemy.row || player.col == enemy.col) {
+                // здесь будет стрельба по врагу
+                player.health -= 5;
+                enemy.actions--;
+            }
+            if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
+                // здесь будет рукопашный бой
+                player.health -= 10;
+                enemy.actions--;
             }
         }
     }
