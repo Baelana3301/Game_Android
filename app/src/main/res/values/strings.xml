@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dawn of desolation</string>
+    <string name="button_name">Play</string>
+    <string name="button_name1">Leaderboard</string>
+    <string name="button_name2">Rules</string>
+    <string name="button_name3">Exit</string>
+    <string name="main_menu_background1">Main Menu</string>
+</resources>
