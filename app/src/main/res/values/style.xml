@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="emptyCell">
+        <item name="android:background">@drawable/cage_empty</item>
+    </style>
+    <style name="wallCell">
+        <item name="android:background">@drawable/cage_wall</item>
+    </style>
+    <style name="enemyCell">
+        <item name="android:background">@drawable/cage_enemy</item>
+    </style>
+    <style name="deadCell">
+        <item name="android:background">@drawable/cage_enemy_dead</item>
+    </style>
+    <style name="playerCell">
+        <item name="android:background">@drawable/cage_player</item>
+    </style>
+</resources>
