@@ -5,4 +5,5 @@
     <string name="button_name2">Rules</string>
     <string name="button_name3">Exit</string>
     <string name="main_menu_background1">Main Menu</string>
+    <string name="nickname">NICKNAME</string>
 </resources>

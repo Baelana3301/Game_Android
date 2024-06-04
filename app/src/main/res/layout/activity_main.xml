@@ -13,16 +13,16 @@
         android:id="@+id/edittext_nickname"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="ENTER YOUR NICKNAME"
+        android:hint="@string/nickname"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textAlignment="center"
-        android:textColor="#C0CDDA"
-        android:textColorHint="#C0CDDA"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="20dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="217dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="217dp" />
 
     <Button
         android:id="@+id/button"
