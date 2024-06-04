@@ -51,4 +51,29 @@ public class Mechanics {
 
         return board;
     }
+
+    public static void playerWalk() {
+
+    }
+
+    public static void playerAttack(int p_x, int p_y, int e_x, int e_y) {
+        int actions = 2, score = 0;
+        while (actions > 0) {
+            if (p_x == e_x || p_y == e_y) {
+                // здесь будет стрельба по врагу
+                enemy.health -= 5;
+                score += 100;
+                actions--;
+                continue;
+            }
+            if (Math.abs(p_x - e_x) <= 1 && Math.abs(p_y - e_y) <= 1) {
+                // здесь будет рукопашный бой
+                enemy.health -= 10;
+                score += 200;
+                actions--;
+                continue;
+            }
+        }
+    }
+
 }
