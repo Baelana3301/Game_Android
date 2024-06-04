@@ -41,27 +41,38 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void boardCellClick(Button boardCell, char[][] gameBoard, int row, int col) {
+        if(boardCell.getText() == "0") {
 
+        }
+        if(boardCell.getText() == "E") {
+
+        }
     }
 
     private Button getBoardCell(int row, int col, char[][] gameBoard) {
         Button boardCell;
         if(gameBoard[row][col] == '1') {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.wallCell), null, 0);
+            boardCell.setText("1");
             return boardCell;
         }
         if(gameBoard[row][col] == 'E') {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.enemyCell), null, 0);
+            boardCell.setText("E");
             return boardCell;
         }
         if(gameBoard[row][col] == 'D') {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.deadCell), null, 0);
+            boardCell.setText("D");
             return boardCell;
         }
         if(gameBoard[row][col] == 'P') {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.playerCell), null, 0);
+            boardCell.setText("P");
             return boardCell;
         }
-        return new Button(new android.view.ContextThemeWrapper(this, R.style.emptyCell), null, 0);
+        boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.emptyCell), null, 0);
+        boardCell.setText("0");
+        return boardCell;
     }
 }
