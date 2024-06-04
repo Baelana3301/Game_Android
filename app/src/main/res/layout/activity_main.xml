@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,6 +27,7 @@
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
+        android:textSize="18dp"
         android:text="@string/button_name"
         />
 
@@ -34,6 +36,7 @@
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
+        android:textSize="18dp"
         android:text="@string/button_name1"
         />
 
@@ -42,6 +45,7 @@
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
+        android:textSize="18dp"
         android:text="@string/button_name2"
         />
 
@@ -50,6 +54,7 @@
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
+        android:textSize="18dp"
         android:text="@string/button_name3"
         />
 
