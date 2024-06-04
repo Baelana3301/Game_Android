@@ -1,10 +1,12 @@
 package com.example.dawnofdesolation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         editTextNickname = findViewById(R.id.edittext_nickname);
 
+        Button play_button = findViewById(R.id.play_button);
+        Button leaderboard_button = findViewById(R.id.leaderboard_button);
+        Button rules_button = findViewById(R.id.rules_button);
+        Button exit_button = findViewById(R.id.exit_button);
+
+        play_button.setOnClickListener(v -> startGame());
+        leaderboard_button.setOnClickListener(v -> showStats());
+        exit_button.setOnClickListener(v -> finish());
+        rules_button.setOnClickListener(v -> showRules());
+
+
         EdgeToEdge.enable(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -46,6 +59,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void startGame() {
+        editTextNickname = findViewById(R.id.edittext_nickname);
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void showStats() {
+        Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
+        startActivity(intent);
+    }
+
+    private void showRules() {
+        Intent intent = new Intent(MainActivity.this, RulesActivity.class);
+        startActivity(intent);
+    }
     private void saveNickname() {
         String nickname = editTextNickname.getText().toString().trim();
         SharedPreferences.Editor editor = prefs.edit();

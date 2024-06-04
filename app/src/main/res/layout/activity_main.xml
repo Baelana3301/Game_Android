@@ -20,12 +20,12 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="20dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="140dp"
         android:layout_marginBottom="16dp"
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/play_button"
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
@@ -35,7 +35,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/leaderboard_button"
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
@@ -45,7 +45,7 @@
         />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/rules_button"
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
@@ -55,7 +55,7 @@
         />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/exit_button"
         android:layout_width="220dp"
         android:layout_height="80dp"
         android:background="#D91A2C8E"
