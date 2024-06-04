@@ -20,6 +20,8 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="20dp"
+        android:layout_marginTop="165dp"
+        android:layout_marginBottom="16dp"
         />
 
     <Button
@@ -29,6 +31,7 @@
         android:background="#D91A2C8E"
         android:textSize="18dp"
         android:text="@string/button_name"
+        android:layout_marginBottom="16dp"
         />
 
     <Button
@@ -38,6 +41,7 @@
         android:background="#D91A2C8E"
         android:textSize="18dp"
         android:text="@string/button_name1"
+        android:layout_marginBottom="16dp"
         />
 
     <Button
@@ -47,6 +51,7 @@
         android:background="#D91A2C8E"
         android:textSize="18dp"
         android:text="@string/button_name2"
+        android:layout_marginBottom="16dp"
         />
 
     <Button
@@ -56,6 +61,7 @@
         android:background="#D91A2C8E"
         android:textSize="18dp"
         android:text="@string/button_name3"
+        android:layout_marginBottom="16dp"
         />
 
 </LinearLayout>
