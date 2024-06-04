@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_menu_background1"
-    android:backgroundTintMode="screen"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/main_menu_background1">
 
     <EditText
         android:id="@+id/edittext_nickname"
@@ -20,9 +19,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="217dp" />
+        />
 
     <Button
         android:id="@+id/button"
@@ -30,9 +27,7 @@
         android:layout_height="80dp"
         android:background="#D91A2C8E"
         android:text="@string/button_name"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="288dp" />
+        />
 
     <Button
         android:id="@+id/button2"
@@ -40,9 +35,7 @@
         android:layout_height="80dp"
         android:background="#D91A2C8E"
         android:text="@string/button_name1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="386dp" />
+        />
 
     <Button
         android:id="@+id/button3"
@@ -50,9 +43,7 @@
         android:layout_height="80dp"
         android:background="#D91A2C8E"
         android:text="@string/button_name2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="484dp" />
+        />
 
     <Button
         android:id="@+id/button4"
@@ -60,8 +51,6 @@
         android:layout_height="80dp"
         android:background="#D91A2C8E"
         android:text="@string/button_name3"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="588dp" />
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
