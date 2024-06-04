@@ -2,5 +2,7 @@ package com.example.dawnofdesolation;
 
 public class Entity {
     int health = 10;
-    int x, y;
+    int row, col;
+    int actions = 2;
+    int id;
 }

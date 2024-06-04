@@ -52,26 +52,26 @@ public class Mechanics {
         return board;
     }
 
-    public static void playerWalk() {
+    public static void playerWalk(Entity player, int c_row, int c_col) {
+        if (Math.abs(player.row - c_row) <= 1 && Math.abs(player.col - c_col) <= 1) {
 
+        }
     }
 
-    public static void playerAttack(int p_x, int p_y, int e_x, int e_y) {
-        int actions = 2, score = 0;
-        while (actions > 0) {
-            if (p_x == e_x || p_y == e_y) {
+    public static void playerAttack(Entity player, Entity enemy) {
+        int score = 0;
+        if (player.actions > 0) {
+            if (player.row == enemy.row || player.col == enemy.col) {
                 // здесь будет стрельба по врагу
                 enemy.health -= 5;
                 score += 100;
-                actions--;
-                continue;
+                player.actions--;
             }
-            if (Math.abs(p_x - e_x) <= 1 && Math.abs(p_y - e_y) <= 1) {
+            if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
                 // здесь будет рукопашный бой
                 enemy.health -= 10;
                 score += 200;
-                actions--;
-                continue;
+                player.actions--;
             }
         }
     }

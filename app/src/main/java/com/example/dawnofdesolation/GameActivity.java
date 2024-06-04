@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void boardCellClick(Button boardCell, char[][] gameBoard, int row, int col) {
         if(boardCell.getText() == "0") {
-
+            Mechanics.playerWalk();
         }
         if(boardCell.getText() == "E") {
 
