@@ -5,5 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.DawnOfDesolation" parent="Base.Theme.DawnOfDesolation" />
+    <style name="Theme.DawnOfDesolation" parent="Base.Theme.DawnOfDesolation">
+        <item name="android:fontFamily">@font/pixy</item>
+    </style>
 </resources>
