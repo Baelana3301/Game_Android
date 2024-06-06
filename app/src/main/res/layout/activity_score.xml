@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/leaderboard_background">
+    <TextView
+        android:id="@+id/score_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:text="@string/your_score"
+        android:layout_marginBottom="200dp" />
+
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal">
+        <ImageButton
+            android:id="@+id/play_again_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/black_button1" />
+
+        <TextView
+            android:id="@+id/play_again_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="55dp"
+            android:textColor="@color/black"
+            android:text="@string/back_to_main_menu" />
+    </FrameLayout>
+
+</LinearLayout>

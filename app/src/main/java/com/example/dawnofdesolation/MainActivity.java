@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String usernameFinal = "";
     private static final String PREFS_NAME = "DawnPrefs";
     private static final String NICKNAME_KEY = "nickname";
     private EditText editTextNickname;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startGame() {
         editTextNickname = findViewById(R.id.edittext_nickname);
+        usernameFinal = String.valueOf(editTextNickname.getText());
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
 
