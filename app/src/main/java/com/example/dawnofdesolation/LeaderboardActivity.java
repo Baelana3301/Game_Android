@@ -1,6 +1,5 @@
 package com.example.dawnofdesolation;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,7 +66,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         public void onBindViewHolder(ViewHolder holder, int position) {
             DatabaseHelper.Users user = leaderboard.get(position);
             holder.usernameTextView.setText(user.username);
-            holder.scoreTextView.setText(String.valueOf(user.Score));
+            holder.scoreTextView.setText(String.valueOf(user.score));
 
         }
 

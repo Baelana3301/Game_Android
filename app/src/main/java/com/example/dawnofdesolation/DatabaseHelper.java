@@ -21,7 +21,7 @@ public class DatabaseHelper {
         scoresRef = database.getReference("user");
     }
 
-    public void updateUserScore(final String username, final String difficulty, final int newScore) {
+    public void updateUserScore(final String username, final int newScore) {
         scoresRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -32,7 +32,7 @@ public class DatabaseHelper {
                             int userScore = existingUser.getScore();
                             if (newScore > userScore) {
                                 // Новый результат больше существующего, обновляем данные
-                                userSnapshot.getRef().child("easyScore").setValue(newScore);
+                                userSnapshot.getRef().child("score").setValue(newScore); // Изменили название
                             }
                             Log.i("MyAppTag", "Запись обновлена");
                         }
@@ -42,12 +42,7 @@ public class DatabaseHelper {
                     DatabaseReference newUserRef = scoresRef.push();
                     Map<String, Object> newUserValues = new HashMap<>();
                     newUserValues.put("username", username);
-                    if(difficulty.equals("easy")) {
-                        newUserValues.put("easyScore", newScore);
-                    } else {
-                        newUserValues.put("easyScore", 0);
-                    }
-
+                    newUserValues.put("score", newScore); // Изменили название
                     newUserRef.setValue(newUserValues);
                     Log.i("MyAppTag", "Запись добавлена");
                 }
@@ -62,7 +57,7 @@ public class DatabaseHelper {
     }
 
     public void fetchAllUsersScore(final UsersCallback usersCallback) {
-        scoresRef.orderByChild("easyScore").addListenerForSingleValueEvent(new ValueEventListener() {
+        scoresRef.orderByChild("score").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Users> userList = new ArrayList<>();
@@ -86,19 +81,21 @@ public class DatabaseHelper {
         void onUsersFetched(ArrayList<Users> users);
         void onError(DatabaseError error);
     }
+
     public static class Users {
         public String username;
-        public int Score;
+        public int score; // Изменили регистр
 
         // Конструктор без аргументов для Firebase
         public Users() {
-
         }
 
         public int getScore() {
-            return this.Score;
+            return this.score;
         }
 
+        public void setScore(int score) { // Добавили сеттер
+            this.score = score;
+        }
     }
-
 }

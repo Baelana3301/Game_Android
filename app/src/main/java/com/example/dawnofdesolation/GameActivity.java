@@ -3,7 +3,6 @@ package com.example.dawnofdesolation;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -13,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -66,7 +66,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void boardCellClick(Button[][] gameBoard, int row, int col) {
-        Log.e("aaaa", String.valueOf(gameBoard[row][col].getText()));
         if(gameBoard[row][col].getText() == "0") {
             if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 Button prevCell = findViewById(player.id);
@@ -80,26 +79,82 @@ public class GameActivity extends AppCompatActivity {
                 --player.actions;
             }
         }
-        if(gameBoard[row][col].getText() == "E") {
+        if(gameBoard[row][col].getText() == "D") {
+            if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
+                gameBoard[row][col].setBackground(empty_back);
+                gameBoard[row][col].setText("0");
+                --player.actions;
+            }
+        }
+        if(gameBoard[row][col].getText() == "E" && player.actions > 0) {
             for(int i = 0; i < enemies.size(); ++i) {
                 if(gameBoard[row][col].getId() == enemies.get(i).id) {
                     Mechanics.playerAttack(player, enemies.get(i));
                     if(enemies.get(i).health <= 0) {
-                        Button enemy = findViewById(enemies.get(i).id);
-                        enemy.setBackground(dead_back);
+                        gameBoard[row][col].setBackground(dead_back);
                         gameBoard[row][col].setText("D");
+                        //enemies.
                     }
                     break;
                 }
             }
         }
+        if(player.actions == 0) {
+
+        }
+
     }
 
-    public static void enemyWalk(Entity enemy, Entity player) {
+    public void enemyWalk(Entity enemy, Entity player, Button[][] gameBoard) {
         if (enemy.actions > 0) {
-            if(enemy.row == player.row && enemy.col < player.col) {
-
+            if(enemy.row == player.row && enemy.col < player.col && gameBoard[enemy.row][enemy.col + 1].getText() == "0") {
+                gameBoard[enemy.row][enemy.col].setBackground(empty_back);
+                gameBoard[enemy.row][enemy.col].setText("0");
+                gameBoard[enemy.row][enemy.col + 1].setBackground(enemy_back);
+                gameBoard[enemy.row][enemy.col + 1].setText("E");
+                --enemy.actions;
             }
+            else if(enemy.row == player.row && enemy.col > player.col && gameBoard[enemy.row][enemy.col - 1].getText() == "0") {
+                gameBoard[enemy.row][enemy.col].setBackground(empty_back);
+                gameBoard[enemy.row][enemy.col].setText("0");
+                gameBoard[enemy.row][enemy.col - 1].setBackground(enemy_back);
+                gameBoard[enemy.row][enemy.col - 1].setText("E");
+                --enemy.actions;
+            }
+            else if(enemy.row < player.row && enemy.col == player.col && gameBoard[enemy.row + 1][enemy.col].getText() == "0") {
+                gameBoard[enemy.row][enemy.col].setBackground(empty_back);
+                gameBoard[enemy.row][enemy.col].setText("0");
+                gameBoard[enemy.row + 1][enemy.col].setBackground(enemy_back);
+                gameBoard[enemy.row + 1][enemy.col].setText("E");
+                --enemy.actions;
+            }
+            else if(enemy.row > player.row && enemy.col == player.col && gameBoard[enemy.row - 1][enemy.col].getText() == "0") {
+                gameBoard[enemy.row][enemy.col].setBackground(empty_back);
+                gameBoard[enemy.row][enemy.col].setText("0");
+                gameBoard[enemy.row - 1][enemy.col].setBackground(enemy_back);
+                gameBoard[enemy.row - 1][enemy.col].setText("E");
+                --enemy.actions;
+            }
+            else {
+                Random random = new Random();
+                int randomRow = random.nextInt(3) - 1; // Генерирует случайное число от -1 до 1
+                int randomCol = random.nextInt(3) - 1;
+                if (!(enemy.row + randomRow < 8 && enemy.row + randomRow >= 0)) {
+                    randomRow = 0;
+                }
+                if (!(enemy.col + randomRow < 8 && enemy.col + randomRow >= 0)) {
+                    randomCol = 0;
+                }
+                if(gameBoard[enemy.row + randomRow][enemy.col + randomCol].getText() == "0") {
+                    gameBoard[enemy.row][enemy.col].setBackground(empty_back);
+                    gameBoard[enemy.row][enemy.col].setText("0");
+                    gameBoard[enemy.row + randomRow][enemy.col + randomCol].setBackground(enemy_back);
+                    gameBoard[enemy.row + randomRow][enemy.col + randomCol].setText("E");
+                    --enemy.actions;
+
+                }
+            }
+
         }
     }
 
