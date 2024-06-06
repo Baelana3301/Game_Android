@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.Source;
 
 public class ScoreActivity extends AppCompatActivity {
 
