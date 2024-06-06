@@ -1,4 +1,6 @@
 package com.example.dawnofdesolation;
 
-public class LeaderboardActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LeaderboardActivity extends AppCompatActivity {
 }
