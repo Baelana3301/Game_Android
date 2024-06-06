@@ -52,12 +52,6 @@ public class Mechanics {
         return board;
     }
 
-    public static void playerWalk(Entity player, int c_row, int c_col) {
-        if (player.actions > 0 && Math.abs(player.row - c_row) <= 1 && Math.abs(player.col - c_col) <= 1) {
-            // передвижение
-            player.actions--;
-        }
-    }
 
     public static void playerAttack(Entity player, Entity enemy) {
         int score = 0;

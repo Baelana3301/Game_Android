@@ -6,4 +6,6 @@
     <string name="button_name3">Exit</string>
     <string name="main_menu_background1">Main Menu</string>
     <string name="nickname">NICKNAME</string>
+    <string name="rules">RULES</string>
+    <string name="rules_text">- A field of 8 by 10 cells is given. \n\n- Within one turn, the player can move around the field - one square around himself, and attack the enemy.\n\n- Killing opponents earns the player points.\n\n- If the opponent and the player are opposite each other at a distance, then the player can strike using ranged combat.\n\n- If the player is on the next cell from the enemy, he can strike using melee, which causes double damage to the enemy.\n\n- As the moves go by, more enemies will start appearing on the field. The game will end when the player runs out of health.</string>
 </resources>
