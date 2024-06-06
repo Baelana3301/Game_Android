@@ -1,26 +1,26 @@
 package com.example.dawnofdesolation;
+import android.content.Context;
 import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Mechanics {
     private static final int ROWS = 10;
     private static final int COLS = 8;
-    private static final char EMPTY_CELL = '0';
-    private static final char PLAYER = 'P';
-    private static final char ENEMY = 'E';
-    private static final char WALL = '1';
+    private static final String EMPTY_CELL = "0";
+    private static final String PLAYER = "P";
+    private static final String ENEMY = "E";
+    private static final String WALL = "1";
 
-    public static Button[][] generateGameBoard() {
+    public static Button[][] generateGameBoard(Context context) {
         Button[][] board = new Button[ROWS][COLS];
 
         // Список всех возможных ячеек
-        List<Character> cells = new ArrayList<>();
+        List<String> cells = new ArrayList<>();
 
-        // Добавляем "1" (стены), заполняем 30% клеток стены
+        // Добавляем "1" (стены), заполняем 20% клеток стены
         int totalWalls = (int) (ROWS * COLS * 0.2);
         for (int i = 0; i < totalWalls; i++) {
             cells.add(WALL);
@@ -47,7 +47,9 @@ public class Mechanics {
         int index = 0;
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
-                board[row][col].setText(cells.get(index++));
+                // Инициализация каждой кнопки
+                board[row][col] = new Button(context);
+                board[row][col].setText(String.valueOf(cells.get(index++)));
             }
         }
 
