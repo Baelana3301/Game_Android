@@ -3,6 +3,7 @@ package com.example.dawnofdesolation;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -18,7 +19,7 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     private final Entity player = new Entity(0,0,0);
-    private static final List<Entity> enemies = new ArrayList<>();
+    private  final List<Entity> enemies = new ArrayList<>();
 
     private Drawable player_back;
     private Drawable empty_back;
@@ -66,6 +67,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void boardCellClick(Button[][] gameBoard, int row, int col) {
+        Log.e("aaaa", String.valueOf(gameBoard[row][col].getText()));
         if(gameBoard[row][col].getText() == "0") {
             if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 Button prevCell = findViewById(player.id);
@@ -93,14 +95,20 @@ public class GameActivity extends AppCompatActivity {
                     if(enemies.get(i).health <= 0) {
                         gameBoard[row][col].setBackground(dead_back);
                         gameBoard[row][col].setText("D");
-                        //enemies.
+                        enemies.remove(i);
                     }
                     break;
                 }
             }
         }
         if(player.actions == 0) {
-
+            for(int i = 0; i < enemies.size(); ++i) {
+                while(enemies.get(i).actions > 0) {
+                    enemyWalk(enemies.get(i), player, gameBoard);
+                }
+                enemies.get(i).actions = 2;
+            }
+            player.actions = 2;
         }
 
     }
@@ -112,6 +120,8 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col].setText("0");
                 gameBoard[enemy.row][enemy.col + 1].setBackground(enemy_back);
                 gameBoard[enemy.row][enemy.col + 1].setText("E");
+                enemy.col++;
+                enemy.id = gameBoard[enemy.row][enemy.col].getId();
                 --enemy.actions;
             }
             else if(enemy.row == player.row && enemy.col > player.col && gameBoard[enemy.row][enemy.col - 1].getText() == "0") {
@@ -119,6 +129,8 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col].setText("0");
                 gameBoard[enemy.row][enemy.col - 1].setBackground(enemy_back);
                 gameBoard[enemy.row][enemy.col - 1].setText("E");
+                enemy.col--;
+                enemy.id = gameBoard[enemy.row][enemy.col].getId();
                 --enemy.actions;
             }
             else if(enemy.row < player.row && enemy.col == player.col && gameBoard[enemy.row + 1][enemy.col].getText() == "0") {
@@ -126,6 +138,8 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col].setText("0");
                 gameBoard[enemy.row + 1][enemy.col].setBackground(enemy_back);
                 gameBoard[enemy.row + 1][enemy.col].setText("E");
+                enemy.row++;
+                enemy.id = gameBoard[enemy.row][enemy.col].getId();
                 --enemy.actions;
             }
             else if(enemy.row > player.row && enemy.col == player.col && gameBoard[enemy.row - 1][enemy.col].getText() == "0") {
@@ -133,16 +147,18 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col].setText("0");
                 gameBoard[enemy.row - 1][enemy.col].setBackground(enemy_back);
                 gameBoard[enemy.row - 1][enemy.col].setText("E");
+                enemy.row--;
+                enemy.id = gameBoard[enemy.row][enemy.col].getId();
                 --enemy.actions;
             }
             else {
                 Random random = new Random();
                 int randomRow = random.nextInt(3) - 1; // Генерирует случайное число от -1 до 1
                 int randomCol = random.nextInt(3) - 1;
-                if (!(enemy.row + randomRow < 8 && enemy.row + randomRow >= 0)) {
+                if (!(enemy.row + randomRow >= 0 && enemy.row + randomRow < 8)) {
                     randomRow = 0;
                 }
-                if (!(enemy.col + randomRow < 8 && enemy.col + randomRow >= 0)) {
+                if (!(enemy.col + randomCol >= 0 && enemy.col + randomCol < 8)) {
                     randomCol = 0;
                 }
                 if(gameBoard[enemy.row + randomRow][enemy.col + randomCol].getText() == "0") {
@@ -150,8 +166,10 @@ public class GameActivity extends AppCompatActivity {
                     gameBoard[enemy.row][enemy.col].setText("0");
                     gameBoard[enemy.row + randomRow][enemy.col + randomCol].setBackground(enemy_back);
                     gameBoard[enemy.row + randomRow][enemy.col + randomCol].setText("E");
+                    enemy.row = enemy.row + randomRow;
+                    enemy.col = enemy.col + randomCol;
+                    enemy.id = gameBoard[enemy.row][enemy.col].getId();
                     --enemy.actions;
-
                 }
             }
 
