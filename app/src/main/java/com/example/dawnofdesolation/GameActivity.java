@@ -3,7 +3,6 @@ package com.example.dawnofdesolation;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -45,10 +43,7 @@ public class GameActivity extends AppCompatActivity {
         for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 8; col++) {
                 Button boardCell = getBoardCell(row, col, gameBoard);
-                boardCell.setId(View.generateViewId());
                 ids.add(boardCell.getId());
-                int finalRow = row;
-                int finalCol = col;
 
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.width = 0;
@@ -77,9 +72,7 @@ public class GameActivity extends AppCompatActivity {
     private void boardCellClick(Button boardCell, char[][] gameBoard, int row, int col) {
         if(boardCell.getText() == "0") {
             if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
-                Log.e("aaaa", "player id: " + String.valueOf(player.id));
                 Button prevCell = findViewById(player.id);
-                Log.e("aaaa", "prevCell : " + String.valueOf(prevCell));
                 prevCell.setBackground(empty_back);
                 boardCell.setBackground(player_back);
                 player.row = row;
