@@ -1,7 +1,5 @@
 package com.example.dawnofdesolation;
 
-import static com.google.firebase.database.core.operation.OperationSource.Source.User;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
