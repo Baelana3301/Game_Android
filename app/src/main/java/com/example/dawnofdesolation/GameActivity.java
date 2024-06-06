@@ -2,7 +2,6 @@ package com.example.dawnofdesolation;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -32,7 +31,7 @@ public class GameActivity extends AppCompatActivity {
         empty_back = ContextCompat.getDrawable(this, R.drawable.cage_empty);
         enemy_back = ContextCompat.getDrawable(this, R.drawable.cage_enemy);
         dead_back = ContextCompat.getDrawable(this, R.drawable.cage_enemy_dead);
-        char[][] gameBoard = Mechanics.generateGameBoard();
+        Button[][] gameBoard = Mechanics.generateGameBoard();
         GridLayout gridLayout = findViewById(R.id.gridLayout);
         initializeBoard(gridLayout, gameBoard);
     }
@@ -75,14 +74,34 @@ public class GameActivity extends AppCompatActivity {
                 Button prevCell = findViewById(player.id);
                 prevCell.setBackground(empty_back);
                 boardCell.setBackground(player_back);
+                gameBoard[player.row][player.col] = '0';
                 player.row = row;
                 player.col = col;
+                gameBoard[player.row][player.col] = 'P';
                 player.id = boardCell.getId();
                 --player.actions;
             }
         }
         if(boardCell.getText() == "E") {
-            //Mechanics.playerAttack();
+            for(int i = 0; i < enemies.size(); ++i) {
+                if(boardCell.getId() == enemies.get(i).id) {
+                    Mechanics.playerAttack(player, enemies.get(i));
+                    if(enemies.get(i).health <= 0) {
+                        Button enemy = findViewById(enemies.get(i).id);
+                        enemy.setBackground(dead_back);
+                        gameBoard[row][col] = 'D';
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void enemyWalk(Entity enemy, Entity player) {
+        if (enemy.actions > 0) {
+            if(enemy.row == player.row && enemy.col < player.col) {
+
+            }
         }
     }
 
@@ -100,12 +119,6 @@ public class GameActivity extends AppCompatActivity {
             boardCell.setId(View.generateViewId());
             Entity enemy = new Entity(row, col, boardCell.getId());
             enemies.add(enemy);
-            return boardCell;
-        }
-        if(gameBoard[row][col] == 'D') {
-            boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.deadCell), null, 0);
-            boardCell.setText("D");
-            boardCell.setId(View.generateViewId());
             return boardCell;
         }
         if(gameBoard[row][col] == 'P') {

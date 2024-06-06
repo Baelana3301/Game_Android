@@ -1,4 +1,6 @@
 package com.example.dawnofdesolation;
+import android.widget.Button;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,8 +14,8 @@ public class Mechanics {
     private static final char ENEMY = 'E';
     private static final char WALL = '1';
 
-    public static char[][] generateGameBoard() {
-        char[][] board = new char[ROWS][COLS];
+    public static Button[][] generateGameBoard() {
+        Button[][] board = new Button[ROWS][COLS];
 
         // Список всех возможных ячеек
         List<Character> cells = new ArrayList<>();
@@ -45,7 +47,7 @@ public class Mechanics {
         int index = 0;
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
-                board[row][col] = cells.get(index++);
+                board[row][col].setText(cells.get(index++));
             }
         }
 
@@ -54,29 +56,21 @@ public class Mechanics {
 
 
     public static void playerAttack(Entity player, Entity enemy) {
-        int score = 0;
         if (player.actions > 0) {
             if (player.row == enemy.row || player.col == enemy.col) {
                 // здесь будет стрельба по врагу
                 enemy.health -= 5;
-                score += 100;
                 player.actions--;
             }
             if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
                 // здесь будет рукопашный бой
                 enemy.health -= 10;
-                score += 200;
                 player.actions--;
             }
         }
     }
 
-    public static void enemyWalk(Entity enemy, int c_row, int c_col) {
-        if (enemy.actions > 0 && Math.abs(enemy.row - c_row) <= 1 && Math.abs(enemy.col - c_col) <= 1) {
-            // передвижение
-            enemy.actions--;
-        }
-    }
+
 
     public static void enemyAttack(Entity player, Entity enemy) {
         if (player.actions > 0) {
