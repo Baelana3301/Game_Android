@@ -27,7 +27,7 @@ public class ScoreActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        int finalScore = getIntent().getIntExtra("FINAL_SCORE", 0);
+        int finalScore = GameActivity.score;
         scoreTextView.setText(String.format("Score: %d", finalScore));
 
         if(!MainActivity.usernameFinal.isEmpty()) {

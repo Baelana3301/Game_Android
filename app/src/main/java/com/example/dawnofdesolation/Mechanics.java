@@ -78,17 +78,9 @@ public class Mechanics {
 
 
     public static void enemyAttack(Entity player, Entity enemy) {
-        if (player.actions > 0) {
-            if (player.row == enemy.row || player.col == enemy.col) {
-                // здесь будет стрельба по врагу
-                player.health -= 5;
-                enemy.actions--;
-            }
-            if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
-                // здесь будет рукопашный бой
-                player.health -= 10;
-                enemy.actions--;
-            }
+        if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
+            // здесь будет рукопашный бой
+            player.health -= 10;
         }
     }
 

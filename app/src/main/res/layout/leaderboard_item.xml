@@ -9,7 +9,7 @@
         android:id="@+id/usernameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"
+        android:layout_weight="0.6"
         android:textSize="30dp"
         android:paddingEnd="8dp"
         android:textColor="@color/white"/>
@@ -18,7 +18,7 @@
         android:id="@+id/scoreTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:textSize="30dp"
         android:textColor="@color/white"/>
 </LinearLayout>

@@ -12,7 +12,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/gameover"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:background="@color/black"
+            android:textColor="@color/red"
+            android:textAlignment="center"
+            android:text="GAME OVER"/>
+        <TextView
+            android:id="@+id/scoreView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:background="@color/black"
+            android:textColor="@color/red"
+            android:textAlignment="center"
+            android:text="SCORE"/>
+
+
     </LinearLayout>
 
     <GridLayout
@@ -31,6 +55,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5">
+        <TextView
+            android:id="@+id/tap"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:background="@color/black"
+            android:textColor="@color/red"
+            android:textAlignment="center"
+            android:text="TAP TO CONTINUE"/>
     </LinearLayout>
 
 

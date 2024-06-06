@@ -1,12 +1,14 @@
 package com.example.dawnofdesolation;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -25,6 +27,11 @@ public class GameActivity extends AppCompatActivity {
     private Drawable empty_back;
     private Drawable enemy_back;
     private Drawable dead_back;
+    private Drawable player_dead;
+    public static int score = 0;
+    private TextView scoreView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +40,18 @@ public class GameActivity extends AppCompatActivity {
         empty_back = ContextCompat.getDrawable(this, R.drawable.cage_empty);
         enemy_back = ContextCompat.getDrawable(this, R.drawable.cage_enemy);
         dead_back = ContextCompat.getDrawable(this, R.drawable.cage_enemy_dead);
+        player_dead = ContextCompat.getDrawable(this, R.drawable.cage_player_dead);
+        scoreView = findViewById(R.id.scoreView);
         Button[][] gameBoard = Mechanics.generateGameBoard(this);
         GridLayout gridLayout = findViewById(R.id.gridLayout);
         initializeBoard(gridLayout, gameBoard);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        score = 0;
+
     }
 
 
@@ -86,6 +102,8 @@ public class GameActivity extends AppCompatActivity {
             if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 gameBoard[row][col].setBackground(empty_back);
                 gameBoard[row][col].setText("0");
+                score += 100;
+                scoreView.setText("SCORE " + score);
                 --player.actions;
             }
         }
@@ -97,6 +115,8 @@ public class GameActivity extends AppCompatActivity {
                         gameBoard[row][col].setBackground(dead_back);
                         gameBoard[row][col].setText("D");
                         enemies.remove(i);
+                        score += 50;
+                        scoreView.setText("SCORE " + score);
                     }
                     break;
                 }
@@ -104,12 +124,39 @@ public class GameActivity extends AppCompatActivity {
         }
         if(player.actions == 0) {
             for(int i = 0; i < enemies.size(); ++i) {
+                Mechanics.enemyAttack(player, enemies.get(i));
+                if(player.health == 0) {
+                    gameBoard[player.row][player.col].setBackground(player_dead);
+                    TextView gameover = findViewById(R.id.gameover);
+                    TextView tap = findViewById(R.id.tap);
+                    gameover.setVisibility(View.VISIBLE);
+                    tap.setVisibility(View.VISIBLE);
+                    tap.setOnClickListener(v -> {
+                        Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
+                        startActivity(intent);
+                    });
+                }
                 enemyWalk(enemies.get(i), player, gameBoard);
             }
+            spawnEnemy(gameBoard);
             player.actions = 2;
         }
 
     }
+
+    public void spawnEnemy(Button[][] gameBoard) {
+        Random random = new Random();
+        int randomRow = random.nextInt(10);
+        int randomCol = random.nextInt(8);
+        if(gameBoard[randomRow][randomCol].getText() == "0") {
+            gameBoard[randomRow][randomCol].setBackground(enemy_back);
+            gameBoard[randomRow][randomCol].setText("E");
+            Entity enemy = new Entity(randomRow, randomCol, gameBoard[randomRow][randomCol].getId());
+            enemies.add(enemy);
+        }
+    }
+
+
 
     public void enemyWalk(Entity enemy, Entity player, Button[][] gameBoard) {
         if (enemy.actions > 0) {
