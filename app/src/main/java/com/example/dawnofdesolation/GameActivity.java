@@ -68,6 +68,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void boardCellClick(Button[][] gameBoard, int row, int col) {
         Log.e("aaaa", String.valueOf(gameBoard[row][col].getText()));
+        Log.e("aaaa", String.valueOf(player.actions));
         if(gameBoard[row][col].getText() == "0") {
             if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 Button prevCell = findViewById(player.id);
@@ -103,10 +104,7 @@ public class GameActivity extends AppCompatActivity {
         }
         if(player.actions == 0) {
             for(int i = 0; i < enemies.size(); ++i) {
-                while(enemies.get(i).actions > 0) {
-                    enemyWalk(enemies.get(i), player, gameBoard);
-                }
-                enemies.get(i).actions = 2;
+                enemyWalk(enemies.get(i), player, gameBoard);
             }
             player.actions = 2;
         }
@@ -122,7 +120,6 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col + 1].setText("E");
                 enemy.col++;
                 enemy.id = gameBoard[enemy.row][enemy.col].getId();
-                --enemy.actions;
             }
             else if(enemy.row == player.row && enemy.col > player.col && gameBoard[enemy.row][enemy.col - 1].getText() == "0") {
                 gameBoard[enemy.row][enemy.col].setBackground(empty_back);
@@ -131,7 +128,6 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row][enemy.col - 1].setText("E");
                 enemy.col--;
                 enemy.id = gameBoard[enemy.row][enemy.col].getId();
-                --enemy.actions;
             }
             else if(enemy.row < player.row && enemy.col == player.col && gameBoard[enemy.row + 1][enemy.col].getText() == "0") {
                 gameBoard[enemy.row][enemy.col].setBackground(empty_back);
@@ -140,7 +136,6 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row + 1][enemy.col].setText("E");
                 enemy.row++;
                 enemy.id = gameBoard[enemy.row][enemy.col].getId();
-                --enemy.actions;
             }
             else if(enemy.row > player.row && enemy.col == player.col && gameBoard[enemy.row - 1][enemy.col].getText() == "0") {
                 gameBoard[enemy.row][enemy.col].setBackground(empty_back);
@@ -149,7 +144,6 @@ public class GameActivity extends AppCompatActivity {
                 gameBoard[enemy.row - 1][enemy.col].setText("E");
                 enemy.row--;
                 enemy.id = gameBoard[enemy.row][enemy.col].getId();
-                --enemy.actions;
             }
             else {
                 Random random = new Random();
@@ -169,7 +163,6 @@ public class GameActivity extends AppCompatActivity {
                     enemy.row = enemy.row + randomRow;
                     enemy.col = enemy.col + randomCol;
                     enemy.id = gameBoard[enemy.row][enemy.col].getId();
-                    --enemy.actions;
                 }
             }
 

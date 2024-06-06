@@ -59,16 +59,19 @@ public class Mechanics {
 
     public static void playerAttack(Entity player, Entity enemy) {
         if (player.actions > 0) {
-            if (player.row == enemy.row || player.col == enemy.col) {
-                // здесь будет стрельба по врагу
-                enemy.health -= 5;
-                player.actions--;
-            }
             if (Math.abs(player.row - enemy.row) <= 1 && Math.abs(player.col - enemy.col) <= 1) {
                 // здесь будет рукопашный бой
                 enemy.health -= 10;
                 player.actions--;
+                return;
             }
+            if (player.row == enemy.row || player.col == enemy.col) {
+                // здесь будет стрельба по врагу
+                enemy.health -= 5;
+                player.actions--;
+
+            }
+
         }
     }
 
