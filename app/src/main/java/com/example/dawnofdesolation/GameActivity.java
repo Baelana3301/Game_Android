@@ -2,6 +2,7 @@ package com.example.dawnofdesolation;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -221,6 +222,7 @@ public class GameActivity extends AppCompatActivity {
         if(boardCell.getText() == "1") {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.wallCell), null, 0);
             boardCell.setText("1");
+            boardCell.setTextColor(Color.TRANSPARENT);
             boardCell.setId(View.generateViewId());
             return boardCell;
         }
@@ -228,6 +230,7 @@ public class GameActivity extends AppCompatActivity {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.enemyCell), null, 0);
             boardCell.setId(View.generateViewId());
             boardCell.setText("E");
+            boardCell.setTextColor(Color.TRANSPARENT);
             Entity enemy = new Entity(row, col, boardCell.getId());
             enemies.add(enemy);
             return boardCell;
@@ -236,6 +239,7 @@ public class GameActivity extends AppCompatActivity {
             boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.playerCell), null, 0);
             boardCell.setId(View.generateViewId());
             boardCell.setText("P");
+            boardCell.setTextColor(Color.TRANSPARENT);
             player.row = row;
             player.col = col;
             player.id = boardCell.getId();
@@ -243,6 +247,7 @@ public class GameActivity extends AppCompatActivity {
         }
         boardCell = new Button(new android.view.ContextThemeWrapper(this, R.style.emptyCell), null, 0);
         boardCell.setText("0");
+        boardCell.setTextColor(Color.TRANSPARENT);
         boardCell.setId(View.generateViewId());
         return boardCell;
     }
