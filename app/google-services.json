@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1058774249284",
+    "project_id": "dawn-of-desolation-f9bfa",
+    "storage_bucket": "dawn-of-desolation-f9bfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058774249284:android:3cb90eca22a4628ef5f111",
+        "android_client_info": {
+          "package_name": "com.example.dawnofdesolation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDklTfECWkKskHG2s9sYmVIUvNmCT6RABs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
