@@ -87,7 +87,7 @@ public class GameActivity extends AppCompatActivity {
         Log.e("aaaa", String.valueOf(gameBoard[row][col].getText()));
         Log.e("aaaa", String.valueOf(player.actions));
         if(gameBoard[row][col].getText() == "0") {
-            if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
+            if (player.health != 0 && player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 Button prevCell = findViewById(player.id);
                 prevCell.setBackground(empty_back);
                 gameBoard[row][col].setBackground(player_back);
@@ -100,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         if(gameBoard[row][col].getText() == "D") {
-            if (player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
+            if (player.health != 0 && player.actions > 0 && Math.abs(player.row - row) <= 1 && Math.abs(player.col - col) <= 1) {
                 gameBoard[row][col].setBackground(empty_back);
                 gameBoard[row][col].setText("0");
                 score += 100;
@@ -136,11 +136,17 @@ public class GameActivity extends AppCompatActivity {
                         Intent intent = new Intent(GameActivity.this, ScoreActivity.class);
                         startActivity(intent);
                     });
+                    disableAllBoardClickListeners(gameBoard);
                 }
                 enemyWalk(enemies.get(i), player, gameBoard);
             }
             spawnEnemy(gameBoard);
-            player.actions = 2;
+            if (player.health != 0) {
+                player.actions = 2;
+            }
+            else {
+                player.actions = 0;
+            }
         }
 
     }
@@ -214,6 +220,17 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
 
+        }
+    }
+
+    private void disableAllBoardClickListeners(Button[][] gameBoard) {
+        for (int row = 0; row < gameBoard.length; row++) {
+            for (int col = 0; col < gameBoard[row].length; col++) {
+                Button button = gameBoard[row][col];
+                if (button != null) { // Проверка на нулевой указатель, если кнопка еще не была инициализирована
+                    button.setOnClickListener(null);
+                }
+            }
         }
     }
 
